@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gregorian to Hebrew Converter</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Gregorian to Hebrew Converter</h1>
+  
+  <label for="gregorian-date">Enter Gregorian Date:</label>
+  <input type="date" id="gregorian-date">
+  <button onclick="convertToHebrew()">Convert</button>
+  
+  <h2 id="hebrew-date"></h2>
+  
+  <script>
+    function convertToHebrew() {
+      var gregorianDate = document.getElementById('gregorian-date').value;
+      var apiUrl = "https://www.hebcal.com/converter?cfg=json&date=" + gregorianDate + "&g2h=1&strict=1";
+      
+      $.ajax({
+        url: apiUrl,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          var hebrewDate = data.hebrew;
+          document.getElementById('hebrew-date').textContent = "Hebrew Date: " + hebrewDate;
+        },
+        error: function() {
+          alert("An error occurred while converting the date.");
+        }
+      });
+    }
+  </script>
+ <h6><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>Made by Mordechai Liderman</h6>
+</body>
+</html>
